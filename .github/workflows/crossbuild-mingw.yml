@@ -1,6 +1,7 @@
 name: crossbuild-mingw
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
     tags: ["*.*.*"]
@@ -65,6 +66,8 @@ jobs:
       - uses: actions/checkout@v5
       - name: Download artifacts
         uses: actions/download-artifact@v5
+        with:
+          merge-multiple: true
       - name: Rename artifacts
         run: |
           for file in harfbuzz-win*.zip; do
